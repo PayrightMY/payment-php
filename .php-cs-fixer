@@ -1,0 +1,34 @@
+<?php
+
+require_once __DIR__.'/vendor/autoload.php';
+
+$finder = PhpCsFixer\Finder::create()
+    ->in(__DIR__.'/src')
+    ->in(__DIR__.'/tests');
+
+$config = new PhpCsFixer\Config();
+
+$config
+    ->setRiskyAllowed(false)
+    ->setRules([
+        '@Symfony'                          => true,
+        'array_syntax'                      => ['syntax' => 'short'],
+        'binary_operator_spaces'            => [
+            'operators' => [
+                '='  => 'single_space',
+                '=>' => 'align',
+            ],
+        ],
+        'increment_style'                   => ['style' => 'post'],
+        'no_empty_comment'                  => false,
+        'no_unneeded_control_parentheses'   => false,
+        'not_operator_with_successor_space' => true,
+        'phpdoc_align'                      => ['tags' => ['param']],
+        'phpdoc_no_empty_return'            => false,
+        'phpdoc_order'                      => true,
+        'single_trait_insert_per_statement' => false,
+        'yoda_style'                        => false,
+    ])        
+    ->setFinder($finder);
+
+return $config;
